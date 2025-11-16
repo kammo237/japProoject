@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The History and Evolution of Manga</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow: hidden;
+        }
+
+        .presentation {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide {
+            width: 90%;
+            max-width: 1200px;
+            height: 85vh;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            display: none;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide.active {
+            display: flex;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 60px;
+            color: white;
+        }
+
+        .slide-header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .slide-header h2 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+
+        .slide-header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+
+        .slide-content {
+            padding: 50px 60px;
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .content-section {
+            margin-bottom: 30px;
+        }
+
+        .content-section h3 {
+            color: #667eea;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            border-left: 5px solid #667eea;
+            padding-left: 15px;
+        }
+
+        .content-section p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .content-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .content-section li {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .content-section li:before {
+            content: "🎌";
+            position: absolute;
+            left: 0;
+        }
+
+        .timeline {
+            display: grid;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .timeline-item {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+        }
+
+        .timeline-item h4 {
+            color: #667eea;
+            font-size: 1.4em;
+            margin-bottom: 10px;
+        }
+
+        .timeline-item p {
+            margin: 0;
+        }
+
+        .manga-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .manga-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .manga-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .manga-card h4 {
+            color: #667eea;
+            font-size: 1.4em;
+            margin-bottom: 10px;
+        }
+
+        .manga-card .year {
+            color: #764ba2;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        .controls {
+            position: absolute;
+            bottom: 30px;
+            right: 60px;
+            display: flex;
+            gap: 15px;
+            z-index: 10;
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .slide-counter {
+            position: absolute;
+            bottom: 30px;
+            left: 60px;
+            color: #667eea;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #fff5e6 0%, #ffe6cc 100%);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #ff9500;
+            margin: 20px 0;
+        }
+
+        .highlight-box p {
+            color: #663300;
+            font-weight: 500;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .slide-header h1 {
+                font-size: 2em;
+            }
+            .slide-header h2 {
+                font-size: 1.5em;
+            }
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+            .manga-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation">
+        <!-- Slide 1: Title -->
+        <div class="slide active">
+            <div class="slide-header">
+                <h1>🎌 The History and Evolution of Manga</h1>
+                <p>Exploring Japan's Iconic Art Form</p>
+            </div>
+            <div class="slide-content" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+                <div style="max-width: 700px;">
+                    <p style="font-size: 1.5em; color: #667eea; margin-bottom: 30px;">From Ancient Scrolls to Modern Masterpieces</p>
+                    <p style="font-size: 1.2em; color: #555;">A comprehensive exploration of manga's origins, development, and cultural significance in Japanese society</p>
+                </div>
+            </div>
+            <div class="slide-counter">1 / 8</div>
+            <div class="controls">
+                <button onclick="prevSlide()" id="prevBtn">← Previous</button>
+                <button onclick="nextSlide()" id="nextBtn">Next →</button>
+            </div>
+        </div>
+
+        <!-- Slide 2: What is Manga? -->
+        <div class="slide">
+            <div class="slide-header">
+                <h2>What is Manga?</h2>
+            </div>
+            <div class="slide-content">
+                <div class="content-section">
+                    <h3>Definition</h3>
+                    <p>Manga (漫画) are Japanese comics and graphic novels characterized by their distinctive art style, reading direction (right-to-left), and diverse genres catering to all age groups and demographics.</p>
+                </div>
+                
+                <div class="highlight-box">
+                    <p><strong>Etymology:</strong> The word "manga" was coined by the famous artist Hokusai in 1814, combining "man" (whimsical) and "ga" (pictures) to mean "whimsical sketches" or "random drawings."</p>
+                </div>
+
+                <div class="content-section">
+                    <h3>Key Characteristics</h3>
+                    <ul>
+                        <li><strong>Right-to-left reading:</strong> Traditional Japanese reading direction preserved in manga format</li>
+                        <li><strong>Black and white art:</strong> Most manga are published in monochrome with occasional color pages</li>
+                        <li><strong>Serialized format:</strong> Stories typically published in magazines before being compiled into volumes</li>
+                        <li><strong>Diverse genres:</strong> From action and romance to horror and slice-of-life, manga covers every imaginable topic</li>
+                        <li><strong>Expressive artwork:</strong> Emphasis on conveying emotions through exaggerated facial expressions and dynamic visual effects</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="slide-counter">2 / 8</div>
+            <div class="controls">
+                <button onclick="prevSlide()" id="prevBtn">← Previous</button>
+                <button onclick="nextSlide()" id="nextBtn">Next →</button>
+            </div>
+        </div>
+
+        <!-- Slide 3: Ancient Origins -->
+        <div class="slide">
+            <div class="slide-header">
+                <h2>Ancient Origins: The Roots of Manga</h2>
+            </div>
+            <div class="slide-content">
+                <div class="content-section">
+                    <h3>12th-13th Century: Chōjū-giga (鳥獣戯画)</h3>
+                    <p>Often considered the earliest form of manga, these "Scrolls of Frolicking Animals" depicted anthropomorphic animals in humorous situations. Created by Buddhist monks, these scrolls used sequential art to tell stories without text.</p>
+                </div>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h4>Edo Period (1603-1867)</h4>
+                        <p><strong>Kibyōshi:</strong> Yellow-covered books featuring illustrated stories for adults, combining pictures and text in a sequential format.</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <h4>1814: Hokusai Manga</h4>
+                        <p>Katsushika Hokusai published 15 volumes of sketches depicting everyday life, nature, and supernatural beings. This collection gave the medium its name.</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <h4>Late 19th Century</h4>
+                        <p><strong>Ponchi-e and Tobae:</strong> Political cartoons and satirical drawings influenced by Western comic traditions, marking the transition to modern manga.</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box" style="margin-top: 25px;">
+                    <p><strong>Cultural Significance:</strong> These early forms of visual storytelling were deeply rooted in Japanese Buddhist art, ukiyo-e woodblock prints, and theatrical traditions like kabuki.</p>
+                </div>
+            </div>
+            <div class="slide-counter">3 / 8</div>
+            <div class="controls">
+                <button onclick="prevSlide()">← Previous</button>
+                <button onclick="nextSlide()">Next →</button>
+            </div>
+        </div>
+
+        <!-- Slide 4: Modern Manga Birth -->
+        <div class="slide">
+            <div class="slide-header">
+                <h2>Birth of Modern Manga (1900s-1950s)</h2>
+            </div>
+            <div class="slide-content">
+                <div class="content-section">
+                    <h3>Early 20th Century Pioneers</h3>
+                    <p>The modern manga format began to take shape in the early 1900s, influenced by Western comics and emerging Japanese artistic movements.</p>
+                </div>
+
+                <div class="manga-grid">
+                    <div class="manga-card">
+                        <h4>Rakuten Kitazawa</h4>
+                        <div class="year">1902</div>
+                        <p>Created "Tagosaku to Mokube no Tokyo Kenbutsu," considered one of the first modern manga. Kitazawa is known as the "father of modern manga" and established many conventions still used today.</p>
+                    </div>
+
+                    <div class="manga-card">
+                        <h4>Ippei Okamoto</h4>
+                        <div class="year">1920s</div>
+                        <p>Pioneered political manga and cartoon journalism, bringing manga into mainstream media and newspapers. His work made manga more accessible to the general public.</p>
+                    </div>
+
+                    <div class="manga-card">
+                        <h4>Osamu Tezuka</h4>
+                        <div class="year">1947</div>
+                        <p>Published "Shin Takarajima" (New Treasure Island), which sold 400,000 copies and revolutionized manga with cinematic techniques, detailed character development, and complex narratives.</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box" style="margin-top: 25px;">
+                    <p><strong>Post-War Impact:</strong> After World War II, manga became a form of escapism and entertainment for a nation rebuilding itself. The medium evolved rapidly, establishing the foundations for the manga industry we know today.</p>
+                </div>
+            </div>
+            <div class="slide-counter">4 / 8</div>
+            <div class="controls">
+                <button onclick="prevSlide()">← Previous</button>
+                <button onclick="nextSlide()">Next →</button>
+            </div>
+        </div>
+
+        <!-- Slide 5: Osamu Tezuka's Revolution -->
+        <div class="slide">
+            <div class="slide-header">
+                <h2>The God of Manga: Osamu Tezuka</h2>
+            </div>
+            <div class="slide-content">
+                <div class="content-section">
+                    <h3>Revolutionary Contributions</h3>
+                    <p>Osamu Tezuka (1928-1989) transformed manga from simple entertainment into a sophisticated art form. His influence on the medium cannot be overstated.</p>
+                </div>
+
+                <div class="two-column">
+                    <div>
+                        <div class="content-section">
+                            <h3>Innovative Techniques</h3>
+                            <ul>
+                                <li><strong>Cinematic panels:</strong> Used varying panel sizes and angles inspired by film</li>
+                                <li><strong>Dynamic action:</strong> Created sense of movement and speed</li>
+                                <li><strong>Expressive eyes:</strong> Large, emotive eyes became a manga staple</li>
+                                <li><strong>Complex narratives:</strong> Introduced serious themes and character depth</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="content-section">
+                            <h3>Major Works</h3>
+                            <ul>
+                                <li><strong>Astro Boy (1952):</strong> First serialized manga with a continuing storyline</li>
+                                <li><strong>Kimba the White Lion (1950):</strong> Environmental and ethical themes</li>
+                                <li><strong>Black Jack (1973):</strong> Medical drama with moral complexity</li>
+                                <li><strong>Phoenix (1967):</strong> Epic spanning human history</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>Legacy:</strong> Tezuka created over 700 manga series comprising more than 170,000 pages. His studio system trained numerous future manga artists, and his storytelling techniques became the foundation of modern manga and anime.</p>
+                </div>
+            </div>
+            <div class="slide-counter">5 / 8</div>
+            <div class="controls">
+                <button onclick="prevSlide()">← Previous</button>
+                <button onclick="nextSlide()">Next →</button>
+            </div>
+        </div>
+
+        <!-- Slide 6: First Manga Series -->
+        <div class="slide">
+            <div class="slide-header">
+                <h2>Pioneering Manga Series</h2>
+            </div>
+            <div class="slide-content">
+                <div class="manga-grid">
+                    <div class="manga-card">
+                        <h4>Sazae-san</h4>
+                        <div class="year">1946 - Machiko Hasegawa</div>
+                        <p>A four-panel comic strip following a family's daily life. Still the longest-running anime adaptation, representing post-war Japanese family values and domestic humor.</p>
+                    </div>
+
+                    <div class="manga-card">
+                        <h4>Astro Boy (Tetsuwan Atom)</h4>
+                        <div class="year">1952 - Osamu Tezuka</div>
+                        <p>Story of a robot boy with human emotions. First manga with a continuing storyline published in a weekly magazine format. Explored themes of humanity, technology, and discrimination.</p>
+                    </div>
+
+                    <div class="manga-card">
+                        <h4>Doraemon</h4>
+                        <div class="year">1969 - Fujiko F. Fujio</div>
+                        <p>Robotic cat from the future helps a young boy. Became a cultural icon representing childhood wonder and imagination across generations.</p>
+                    </div>
+
+                    <div class="manga-card">
+                        <h4>Golgo 13</h4>
+                        <div class="year">1968 - Takao Saito</div>
+                        <p>Professional assassin series. Holds the Guinness World Record as the oldest manga still in publication, showcasing manga's evolution into mature storytelling.</p>
+                    </div>
+
+                    <div class="manga-card">
+                        <h4>Demon Lord Dante</h4>
+                        <div class="year">1971 - Go Nagai</div>
+                        <p>Dark fantasy series that pioneered the "transformation" genre and influenced countless action manga with its demon-possession concept.</p>
+                    </div>
+
+                    <div class="manga-card">
+                        <h4>The Rose of Versailles</h4>
+                        <div class="year">1972 - Riyoko Ikeda</div>
+                        <p>Historical drama set in French Revolution. Revolutionary shōjo manga that proved girls' comics could tackle serious historical and political themes.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-counter">6 / 8</div>
+            <div class="controls">
+                <button onclick="prevSlide()">← Previous</button>
+                <button onclick="nextSlide()">Next →</button>
+            </div>
+        </div>
+
+        <!-- Slide 7: The Creation Process -->
+        <div class="slide">
+            <div class="slide-header">
+                <h2>How Manga is Created</h2>
+            </div>
+            <div class="slide-content">
+                <div class="content-section">
+                    <h3>The Traditional Process</h3>
+                </div>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h4>1. Story Development (Plot)</h4>
+                        <p>The mangaka (manga artist) develops the storyline, characters, and narrative arc. This may involve research, character sheets, and detailed plot outlines.</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <h4>2. Name (ネーム)</h4>
+                        <p>Rough sketches showing panel layout, character positions, and dialogue. This storyboard stage determines pacing and visual flow. Editors often provide feedback at this stage.</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <h4>3. Penciling (下書き)</h4>
+                        <p>Detailed pencil drawings are created based on the name. Artists refine character expressions, backgrounds, and action sequences.</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <h4>4. Inking (ペン入れ)</h4>
+                        <p>Final lines are drawn with specialized pens and brushes. This requires steady hands and years of practice to achieve clean, expressive linework.</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <h4>5. Screening & Effects (トーン)</h4>
+                        <p>Screen tones (adhesive sheets with patterns) are applied for shading and textures. Sound effects and speed lines are added for dramatic impact.</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <h4>6. Finishing & Publication</h4>
+                        <p>Final touches, dialogue insertion, and quality checks. Pages are sent to publishers for printing in weekly or monthly magazines.</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>Modern Digital Methods:</strong> Many mangaka now use digital tablets and software like Clip Studio Paint, which speeds up the process and allows for easier corrections while maintaining traditional artistic techniques.</p>
+                </div>
+            </div>
+            <div class="slide-counter">7 / 8</div>
+            <div class="controls">
+                <button onclick="prevSlide()">← Previous</button>
+                <button onclick="nextSlide()">Next →</button>
+            </div>
+        </div>
+
+        <!-- Slide 8: Cultural Impact -->
+        <div class="slide">
+            <div class="slide-header">
+                <h2>Manga's Global Cultural Impact</h2>
+            </div>
+            <div class="slide-content">
+                <div class="content-section">
+                    <h3>From Japanese Art to Global Phenomenon</h3>
+                    <p>Manga has evolved from a purely Japanese medium into a worldwide cultural force, influencing art, storytelling, and popular culture across continents.</p>
+                </div>
+
+                <div class="two-column">
+                    <div>
+                        <div class="content-section">
+                            <h3>Industry Statistics</h3>
+                            <ul>
+                                <li>Manga market worth over $6 billion globally</li>
+                                <li>Over 40% of all books and magazines sold in Japan are manga</li>
+                                <li>Translated into dozens of languages worldwide</li>
+                                <li>Foundation for multi-billion dollar anime industry</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="content-section">
+                            <h3>Cultural Influence</h3>
+                            <ul>
+                                <li>Inspired Western comics and graphic novels</li>
+                                <li>Influenced film, television, and video games</li>
+                                <li>Created worldwide fan communities and conventions</li>
+                                <li>Introduced Japanese language and culture globally</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>UNESCO Recognition:</strong> Manga has been recognized as an important cultural heritage, with the Kyoto International Manga Museum preserving over 300,000 items. The medium continues to push artistic boundaries and address contemporary social issues.</p>
+                </div>
+
+                <div class="content-section" style="margin-top: 30px; text-align: center;">
+                    <h3>Conclusion</h3>
+                    <p>From ancient Buddhist scrolls to modern digital platforms, manga represents centuries of Japanese artistic evolution. Its journey from simple entertainment to sophisticated storytelling medium demonstrates the power of visual narrative to transcend cultural boundaries and connect people worldwide.</p>
+                </div>
+            </div>
+            <div class="slide-counter">8 / 8</div>
+            <div class="controls">
+                <button onclick="prevSlide()">← Previous</button>
+                <button onclick="nextSlide()" disabled>Next →</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            
+            updateButtons();
+            updateCounters();
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                showSlide(currentSlide - 1);
+            }
+        }
+
+        function updateButtons() {
+            const prevBtns = document.querySelectorAll('#prevBtn');
+            const nextBtns = document.querySelectorAll('#nextBtn');
+            
+            prevBtns.forEach(btn => {
+                btn.disabled = currentSlide === 0;
+            });
+            
+            nextBtns.forEach(btn => {
+                btn.disabled = currentSlide === totalSlides - 1;
+            });
+        }
+
+        function updateCounters() {
+            document.querySelectorAll('.slide-counter').forEach((counter, index) => {
+                if (index === currentSlide) {
+                    counter.textContent = `${currentSlide + 1} / ${totalSlides}`;
+                }
+            });
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
+
+        // Initialize
+        updateButtons();
+    </script>
+</body>
+</html>
